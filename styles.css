@@ -1,0 +1,158 @@
+:root {
+  --bg: #f6f1ea;
+  --ink: #2b2420;
+  --muted: #5e5249;
+  --accent: #a24a28;
+  --accent-hover: #7a361c;
+  --paper: #ffffff;
+  --shadow: 0 12px 32px rgb(60 40 20 / 0.16), 0 2px 6px rgb(60 40 20 / 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1814;
+    --ink: #efe6da;
+    --muted: #b9ab9c;
+    --accent: #e8a07c;
+    --accent-hover: #f6c4a8;
+    --paper: #2c2620;
+    --shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+main {
+  width: 100%;
+  max-width: 40rem;
+  padding: clamp(2.5rem, 8vw, 5rem) 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* the photo, as a slightly tilted print */
+.print {
+  margin: 0 0 clamp(2rem, 6vw, 3rem);
+  width: min(100%, 34rem);
+  padding: 0.75rem 0.75rem 2.25rem;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  transform: rotate(-1.5deg);
+}
+
+.print img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #d9cfc2;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(3rem, 14vw, 4.5rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variation-settings: "opsz" 144;
+}
+
+.names {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
+}
+
+.names li { white-space: nowrap; }
+
+.parents {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* married couples: rings between them; partners who married in are set in italic */
+.rings {
+  display: inline-block;
+  margin: 0 0.35em;
+  vertical-align: -0.1em;
+  color: var(--muted);
+}
+
+.rings svg {
+  display: block;
+  width: 1.15em;
+  height: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+
+.kids .partner { font-style: italic; }
+.kids span.partner { color: var(--muted); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.kids { font-size: 1.15rem; }
+
+.kids li + li::before {
+  content: "·";
+  margin-right: 0.75rem;
+  color: var(--muted);
+}
+
+a {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  border-radius: 2px;
+}
+
+a:hover { color: var(--accent-hover); text-decoration-thickness: 2px; }
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 30rem) {
+  /* one couple per line on phones */
+  .kids { flex-direction: column; }
+  .kids li + li::before { content: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
