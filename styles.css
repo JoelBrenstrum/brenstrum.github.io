@@ -153,6 +153,16 @@ a:focus-visible {
   .kids li + li::before { content: none; }
 }
 
+@media (min-width: 64rem) {
+  main { max-width: 64rem; }
+
+  /* sized so the title and names still fit below the photo without scrolling */
+  .print {
+    width: clamp(34rem, (100svh - 26rem) * 1.5, 60rem);
+    padding: 1rem 1rem 3rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
